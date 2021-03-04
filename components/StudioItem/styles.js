@@ -10,17 +10,21 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop:" 100%",
+    justifyContent: 'center',
  },
  title:{
     fontSize: 20,
     color: '#ffffff',
     fontWeight: '500',
     marginTop:" 33%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    textTransform: 'capitalize',
  },
  subtitle:{
     fontSize: 18,
-    fontWeight: 800,
-    color: '#black',
+    fontWeight: '300',
+    color: 'whitesmoke',
     justifyContent: 'center',
     alignItems: 'center'
  }, 

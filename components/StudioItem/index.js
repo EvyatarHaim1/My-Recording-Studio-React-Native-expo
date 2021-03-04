@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 import styles from './styles';
-// import StyledButton from '../StyledButton/index';
+import StyledButton from '../StyledButton/index';
 
 const StudioItem = ({ studio }) => {
     return (
@@ -15,22 +15,17 @@ const StudioItem = ({ studio }) => {
         <Text style={styles.subtitle}> {studio.price} </Text>
     </View>
 
-    {/* <View style={styles.buttonContainer}> */}
-      {/* <StyledButton 
+    <View style={styles.buttonContainer}> 
+       <StyledButton 
           type="primary" 
-          content="Custom Order" 
+          content="Check availability" 
           onPress={() => {
             console.warn( "custom order was pressed");
           }} 
-      />
-      <StyledButton 
-      type="secondary" 
-      content="Exiting Inverntory" 
-      onPress={() => {
-        console.warn("Exiting Inventory");
-      }} 
-      /> */}
+       />
+    </View>
   </View>
+
     )
 }
 
