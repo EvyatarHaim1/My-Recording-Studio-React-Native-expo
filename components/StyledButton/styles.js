@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
+    fontSize: 12,
+    fontWeight: '500',
+    textTransform: 'uppercase',
  },
  text:{
     fontSize: 12,

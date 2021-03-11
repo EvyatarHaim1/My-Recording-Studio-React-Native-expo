@@ -1,8 +1,9 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, StyleSheet,  View } from 'react-native';
+import { KeyboardAvoidingView, Keyboard, StyleSheet,  View } from 'react-native';
 import { Button, Input, Image, Text } from 'react-native-elements';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import firebase from 'firebase';
 
 const RegisterScreen = ({ navigation }) => {
 
@@ -18,6 +19,7 @@ const RegisterScreen = ({ navigation }) => {
     }, [navigation])
 
     const register = () => {
+       Keyboard.dismiss();
        auth.createUserWithEmailAndPassword(email, password)
        .then((authUser) => {
            console.log(authUser)
@@ -25,6 +27,12 @@ const RegisterScreen = ({ navigation }) => {
                 displayName: name,
                 photoURL: imageUrl || "https://www.pinclipart.com/picdir/middle/547-5475593_blank-person-avatar-clipart.png", 
            });
+           db.collection('accounts').doc(email).set({
+               displayName: name,
+               photoURL: imageUrl || "https://www.pinclipart.com/picdir/middle/547-5475593_blank-person-avatar-clipart.png", 
+               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+               email: email,
+           })
        }).catch((error) => alert(error.message));
     };
 

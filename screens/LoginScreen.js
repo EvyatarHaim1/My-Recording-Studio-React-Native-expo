@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAvoidingView, StyleSheet, View, Text } from 'react-native';
+import { KeyboardAvoidingView,Keyboard, StyleSheet, View, Text } from 'react-native';
 import { Button, Input, Image } from 'react-native-elements';
 import { auth } from '../firebase';
 
@@ -21,6 +21,7 @@ const LoginScreen = ({ navigation }) => {
    },[])
 
    const signIn = () => {
+      Keyboard.dismiss();
       auth.signInWithEmailAndPassword(email, password)
           .catch(error => alert(error));
    };
