@@ -10,6 +10,8 @@ import HomeOption from '../components/HomeOption/index';
 const HomeScreen = ({ navigation }) => {
 
     const [chats, setChats ] = useState([]);
+    const [musician, setMusician ] = useState('Create')
+    const [studio, setStudio] = useState('Publish')
 
     const signOutUser = () => {
        auth.signOut().then(() => {
@@ -17,17 +19,21 @@ const HomeScreen = ({ navigation }) => {
        });
     };
 
-    // useEffect(() => {
-    //     const unsubscribe = db.collection('chats')
-    //          .onSnapshot((snapshot) => 
-    //          setChats(
-    //              snapshot.docs.map((doc) => ({
-    //                 id: doc.id,
-    //                 data: doc.data(),
-    //     }))
-    //     ))
-    //     return unsubscribe;
-    // }, [])
+    useEffect(() => { 
+          db.collection('accounts').doc(auth.currentUser.email)
+            .collection('musician').doc('1').get()
+            .then((musicianEdit) => {
+                if(musicianEdit.exists){
+                        setMusician('Edit') 
+            }})
+
+        db.collection('accounts').doc(auth.currentUser.email)
+          .collection('studio').doc('1').get()
+          .then((studioEdit) => {
+               if(studioEdit.exists){
+                    setStudio('Edit') 
+        }})
+    }, [])
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -61,13 +67,7 @@ const HomeScreen = ({ navigation }) => {
         });
      }, [navigation])
 
-     const musicianIsexist = 
-          db.collection('account').doc(auth.currentUser.email)
-          .collection('musician').doc('1') ? ('Edit') : ('Create')
-
-    const studioIsexist = 
-          db.collection('account').doc(auth.currentUser.email)
-          .collection('studio').doc('1') ? ('Edit') : ('Publish')
+    
     //  const enterChat = (id, chatName) => {
     //      navigation.navigate('Chat', {
     //          id,
@@ -81,13 +81,13 @@ const HomeScreen = ({ navigation }) => {
             <HomeOption 
               navigation={navigation}
               backgroundImg={'https://www.thomann.de/blog/wp-content/uploads/2017/01/10-conseils-pour-devenir-musicien-pro.jpg'} 
-              title={`${musicianIsexist} Musician Profile`}
+              title={`${musician} Musician Profile`}
               root='Musician Profile'
             />
             <HomeOption 
               navigation={navigation}
               backgroundImg={'https://www.thomann.de/blog/wp-content/uploads/2017/10/header-studio-quiz-v2.jpg'} 
-              title={`${studioIsexist} your own studio`}
+              title={`${studio} your own studio`}
               root={'Publish Studios'}
             />
             <HomeOption 

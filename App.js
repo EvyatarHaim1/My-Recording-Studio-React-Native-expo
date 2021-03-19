@@ -14,7 +14,8 @@ import SearchStudiosScreen from './screens/SearchStudiosScreen';
 import AddChatScreen from './screens/AddChatScreen';
 import ChatScreen from './screens/ChatScreen';
 import Messages from './screens/Messages';
-// import StudiosList from './components/StudiosList/index';
+import { Provider } from 'react-redux';
+import { store } from './redux/app-redux';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ const globalScreenOptions = {
 
 export default function App() {
   return (
+    <Provider store={store}>
     <NavigationContainer style={styles.container}>
     <Stack.Navigator 
        screenOptions={globalScreenOptions}>
@@ -43,10 +45,11 @@ export default function App() {
     <Stack.Screen name="Chat" component={ChatScreen} /> 
     </Stack.Navigator>
   </NavigationContainer>
-    // <View >
-    //    <StudiosList />
-    //   <StatusBar style="auto" />
-    // </View>
+     {/* <View >
+       <StudiosList />
+       <StatusBar style="auto" />
+     </View> */}
+    </Provider>
   );
 }
 

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       height: '100%',
   },
   image:{
-      width: '100vw',
+      width: "1",
       height: '25vh',
       opacity: 0.8,
   },

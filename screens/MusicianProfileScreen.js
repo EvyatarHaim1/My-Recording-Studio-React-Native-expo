@@ -49,7 +49,6 @@ const MusicianProfileScreen = ({ navigation, route }) => {
       .catch((error) => alert(error.message));
          navigation.navigate('Home')
      }
-  //  }
 
     return (
       <>
@@ -94,7 +93,7 @@ const MusicianProfileScreen = ({ navigation, route }) => {
         <View style={{height: '40%'}}></View>
         <View>
             <Button containerStyle={styles.button} title="Submit"  
-                    style={{width: '150px'}}
+                    style={{width: '150pt'}}
                     onPress={ submit } 
             />
         </View>
